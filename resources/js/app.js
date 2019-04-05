@@ -1,9 +1,15 @@
 var topics = ["this", "own goal", "shade", "yis"];
+var gifLimit = 10;
 
-      function displayMovieInfo() {
+      function displayGifs() {
 
+            if($("#gifLimit-input").val() = "") {
+                return gifLimit;
+            } else {
+                gifLimit = $("#gifLimit-input").val();
+            }
             var meme = $(this).attr("data-name")
-            var queryURL = `https://api.giphy.com/v1/gifs/search?q=${meme}&api_key=1ow0eSpQvrKQ1nQarYqdvaURC99YYscY`;
+            var queryURL = `https://api.giphy.com/v1/gifs/search?q=${meme}&limit=${gifLimit}&api_key=1ow0eSpQvrKQ1nQarYqdvaURC99YYscY`;
 
             // Creates AJAX call for the button being clicked
             $.ajax({
@@ -12,48 +18,37 @@ var topics = ["this", "own goal", "shade", "yis"];
             }).then(function(response) {
               console.log(response);
               var showgifs = $("<div>"); 
-                const {Title: title, Rated: rated, Released: released, Plot: plot, Poster: poster} = response;
+                const {q: q, limit: limit, rating: rating } = response;
 
                 showgifs.addClass("gifsInfo");
-                const rate = $("<span>");
-                  rate.text(rated);
-                const releaseDate = $("<span>");
-                  releaseDate.text(released);
-                const plotView = $("<p>");
-                  plotView.text(plot);
-                const gifsPoster = ($(`<img src="${poster}" alt="${title} gifs poster" />`));
-                // //let ratings = response.Ratings.forEach(function(rating) {
-                //   ratingString = JSON.stringify(rating);
-                //   showgifs.append($(`<span> ${ratingString} </span>`))});
-                showgifs.append(rate, releaseDate, plotView, gifsPoster);
-                //showgifs.append(releaseDate)
+                const rated = $("<span>");
+                  rated.text(rating);
+                const query = $("<span>");
+                  query.text(q);
+                // const imgLimit = $("<p>");
+                //   imgLimit.text(limit);
+                showgifs.append(rate, query, imgLimit, gifsPoster);
+                //showgifs.append(query)
                 //showgifs.append(plot)
                 //.append(poster);
                 console.log(showgifs);
-                //$("#gifs-view").prepend(showgifs);
                 $("#gifs-view").prepend(showgifs);
 
             });
 
             }
 
-      // Generic function for capturing the gifs name from the data-attribute
-      //function alertgifsName() {
-        //var gifsName = $(this).attr("data-name");
-        //console.log(gifsName);
-        //}
-
 
 
       // Function for displaying gifs data
       function renderButtons() {
 
-        // Deleting the gifss prior to adding new gifss
+        // Deleting the old gifs prior to adding new gifss
         // (this is necessary otherwise we will have repeat buttons)
         $("#buttons-view").empty();
 
         // Looping through the array of gifss
-        for (var i = 0; i < gifss.length; i++) {
+        for (var i = 0; i < gifs.length; i++) {
 
           // Then dynamicaly generating buttons for each gifs in the array
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
@@ -61,9 +56,9 @@ var topics = ["this", "own goal", "shade", "yis"];
           // Adding a class
           btn.addClass("gifs");
           // Added a data-attribute
-          btn.attr("data-name", gifss[i]);
+          btn.attr("data-name", gifs[i]);
           // Provided the initial button text
-          btn.text(gifss[i]);
+          btn.text(gifs[i]);
           // Added the button to the HTML
           $("#buttons-view").append(btn);
         }

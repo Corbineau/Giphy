@@ -13,13 +13,34 @@
 </head>
 
 <body>
+    <div class="container">
+        <h1>Get those gifs!</h1>
+
+        <!-- Rendered Buttons will get dumped Here  -->
+        <div id="buttons-view"></div>
+
+        <form id="gif-form">
+            <label for="gif-input">Add a topic, Yo!</label>
+            <input type="text" id="gif-input" /><br />
+            <label for="gifLimit-input">How many gifs should we pull?</label>
+            <input type="number" id="gifLimit-input" /><br />
+            <label for="gifLimit-input">How family friendly are we?</label>
+            <input type="number" id="gifLimit-input" /><br />
+
+            <!-- Button triggers new gif to be added -->
+            <input id="add-topic" type="submit" value="Add a topic, Yo!" />
+        </form>
+
+        <div id="#gif-view">
+
+        </div>
 
 
 
-    <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--My Script-->
-    <script src="resources/js/app.js"></script>
+        <!-- Jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!--My Script-->
+        <script src="resources/js/app.js"></script>
 </body>
 
 </html>
