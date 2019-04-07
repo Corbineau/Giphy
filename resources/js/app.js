@@ -19,7 +19,7 @@ function displayGifs() {
         console.log(response);
         var showgifs = $("<div>");
         const { data: [
-            {images: {
+            { images: {
                 fixed_width_still: {
                     url: fwsurl,
                 },
@@ -36,6 +36,7 @@ function displayGifs() {
         const rated = $("<span>");
         rated.text(rating);
         const imgBox = $(`<img src="${data.images.fixed_width_still.fwsurl}"`);
+        imgBox.addClass("meme");
         imgBox.append(rating);
         showgifs.append(imgBox);
         console.log(showgifs);
@@ -77,13 +78,14 @@ $("#add-gifs").on("click", function (event) {
 
     // This line grabs the input from the textbox
     var gifs = $("#gifs-input").val().trim();
-
+    if(gifs){ //did this so it won't add a blank box if the field is blank.
     // The gifs from the textbox is then added to our array
     topics.push(gifs);
 
     // Calling renderButtons which handles the processing of our gifs array
     renderButtons();
     $("#gifs-input").val("");
+    }
 });
 
 // Function for displaying the gifs inf
