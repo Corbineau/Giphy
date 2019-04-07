@@ -10,11 +10,15 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- custom CSS -->
     <link href="resources/css/style.css" type="text/css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Share:400,400i,700,700i" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1>Get those gifs!</h1>
+        <header class="col-lg-12">
+            <h1>Make Mine Memetic!</h1>
+        </header>
 
         <!-- Rendered Buttons will get dumped Here  -->
         <div class="row">
@@ -31,26 +35,29 @@
                     <input type="number" id="gifLimit-input" /><br />
                     <label for="gifRating-input">How family friendly are we?</label>
                     <button class="dropdown-menu" id=gifRating-input>
-                            <button class="dropdown-item">g</button>
-                            <button class="dropdown-item">pg</button>
-                            <button class="dropdown-item">pg-13</button>
+                        <button class="dropdown-item">g</button>
+                        <button class="dropdown-item">pg</button>
+                        <button class="dropdown-item">pg-13</button>
                     </button>
 
                     <!-- Button triggers new topic to be added -->
                     <input id="add-gifs" type="submit" value="Add a topic, Yo!" />
                 </form>
-            </div>    
+            </div>
         </div>
         <div id="#gif-view">
 
         </div>
 
-</div>
+    </div>
+    <footer>
+        <img src="resources/images/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif" />
+    </footer>
 
-        <!-- Jquery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!--My Script-->
-        <script src="resources/js/app.js"></script>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--My Script-->
+    <script src="resources/js/app.js"></script>
 </body>
 
 </html>

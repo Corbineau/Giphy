@@ -7,33 +7,40 @@ html, body {
 }
 
 body {
-    font-family: 'Nanum Gothic Coding', monospace;
-    background-image: url(../images/trivia.jpg);
+    font-family: 'Share', sans-serif;
+    /* background-image: url();
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
+header {
+    border-bottom: 1px solid black;
+}
 
 h1 {
-    font-family: 'Chicle', cursive;
+    font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
 }
 
 /* structure classes */
 
-.wrapper {
-    align-self: center;
-    height: 100%;
-    width: 50%;
-    padding: 1.5rem;
-    background-color: whitesmoke;
-    border: 2px solid tomato;
+.row {
+    padding: .5rem;
+}
+
+button {
+    margin: .5rem;
 }
 
 
 /* bottom of the page */
 
 footer {
+    position: fixed;
+    z-index: 2;
+    height: 2rem;
+    width: 100%;
+    margin: 0 auto;
     font-size: .75rem;
-    border-top: 1px solid white;
+    border-top: 1px solid black;
 }
