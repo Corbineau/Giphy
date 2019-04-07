@@ -18,7 +18,7 @@ var gifLimit = 10;
             }).then(function(response) {
               console.log(response);
               var showgifs = $("<div>"); 
-                const {q: q, limit: limit, rating: rating } = response;
+                const {q: q, rating: rating } = response;
 
                 showgifs.addClass("gifsInfo");
                 const rated = $("<span>");
@@ -48,7 +48,7 @@ var gifLimit = 10;
         $("#buttons-view").empty();
 
         // Looping through the array of gifss
-        for (var i = 0; i < gifs.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
 
           // Then dynamicaly generating buttons for each gifs in the array
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
@@ -56,9 +56,9 @@ var gifLimit = 10;
           // Adding a class
           btn.addClass("gifs");
           // Added a data-attribute
-          btn.attr("data-name", gifs[i]);
+          btn.attr("data-name",topics[i]);
           // Provided the initial button text
-          btn.text(gifs[i]);
+          btn.text(topics[i]);
           // Added the button to the HTML
           $("#buttons-view").append(btn);
         }
@@ -72,7 +72,7 @@ var gifLimit = 10;
         var gifs = $("#gifs-input").val().trim();
 
         // The gifs from the textbox is then added to our array
-        gifss.push(gifs);
+       topics.push(gifs);
 
         // Calling renderButtons which handles the processing of our gifs array
         renderButtons();
@@ -85,7 +85,7 @@ var gifLimit = 10;
       // work for dynamically generated elements
 
 
-      $(document).on("click", ".gifs", displayMovieInfo);
+      $(document).on("click", ".gifs", displayGifs);
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
