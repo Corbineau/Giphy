@@ -3,15 +3,15 @@ var gifLimit = 10;
 
 function checkLimit() {
     if ($("#gifLimit-input").val() === "") { //did this to make sure that this only goes off if there's a value here.
-    var meme = $(this).attr("data-name")
-    displayGifs(gifLimit, meme);
+        var meme = $(this).attr("data-name")
+        displayGifs(gifLimit, meme);
     } else {
         gifLimit = $("#gifLimit-input").val();
         $("#gifLimit-input").val("");
         var meme = $(this).attr("data-name")
         displayGifs(gifLimit, meme);
     };
-    
+
 };
 
 
@@ -41,8 +41,8 @@ function displayGifs(gifLimit, meme) {
             showgifs.append(imgBox);
             showgifs.append(rated);
             $("#gif-view").append(showgifs);
-            }
         }
+    }
     );
 }
 
