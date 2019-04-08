@@ -3,22 +3,21 @@ var gifLimit = 10;
 
 function checkLimit() {
     if ($("#gifLimit-input").val() === "") { //did this to make sure that this only goes off if there's a value here.
-    displayGifs(gifLimit);
+    var meme = $(this).attr("data-name")
+    displayGifs(gifLimit, meme);
     } else {
         gifLimit = $("#gifLimit-input").val();
         $("#gifLimit-input").val("");
-        displayGifs(gifLimit);
+        var meme = $(this).attr("data-name")
+        displayGifs(gifLimit, meme);
     };
     
 };
 
 
-function displayGifs(gifLimit) {
-
-
+function displayGifs(gifLimit, meme) {
     $("#gif-view").empty();
-    console.log(gifLimit);
-    var meme = $(this).attr("data-name")
+    console.log(meme);
     var queryURL = `https://api.giphy.com/v1/gifs/search?q=${meme}&limit=${gifLimit}&api_key=1ow0eSpQvrKQ1nQarYqdvaURC99YYscY`;
     // Creates AJAX call for the button being clicked
     $.ajax({
@@ -42,8 +41,9 @@ function displayGifs(gifLimit) {
             showgifs.append(imgBox);
             showgifs.append(rated);
             $("#gif-view").append(showgifs);
+            }
         }
-    })
+    );
 }
 
 
@@ -51,25 +51,26 @@ function displayGifs(gifLimit) {
 
 
 
-// Function for displaying gifs data
+
+
 function renderButtons() {
 
-    // Deleting the old gifs prior to adding new gifss
+    // Deleting the old buttons!
     // (this is necessary otherwise we will have repeat buttons)
     $("#buttons-view").empty();
 
-    // Looping through the array of gifss
+    // Looping through the array of topics
     for (var i = 0; i < topics.length; i++) {
 
-        // Then dynamicaly generating buttons for each gifs in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        // Then dynamicaly generating buttons for each topic in the array
         var btn = $("<button>");
         // Adding a class
         btn.addClass("gifs");
-        // Added a data-attribute
+        // data-attribute same as the name of the button
         btn.attr("data-name", topics[i]);
         // Provided the initial button text
         btn.text(topics[i]);
+        console.log(btn.attr("data-name"));
         // Added the button to the HTML
         $("#buttons-view").append(btn);
     }

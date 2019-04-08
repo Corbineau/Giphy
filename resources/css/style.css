@@ -42,7 +42,7 @@ button {
 #gif-view {
     max-width: 100vw;
     display: flex;
-    flex-flow: row, wrap;
+    flex-flow: row wrap;
     margin-bottom: 5rem;
     border-top: 1px dashed tomato;
 }
@@ -50,6 +50,7 @@ button {
 .gifsInfo {
     margin: .5rem;
     padding: .5rem;
+    height: fit-content;
 }
 .meme {
     padding: .25rem;
