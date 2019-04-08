@@ -1,46 +1,51 @@
 var topics = ["this", "own goal", "shade", "yis"];
 var gifLimit = 10;
 
-function displayGifs() {
-    
+function checkLimit() {
     if ($("#gifLimit-input").val() === "") { //did this to make sure that this only goes off if there's a value here.
-        $("#gif-view").html("<p>Please enter a number of gifs you'd like to pull.</p>");
-        console.log("no limit!")
+    displayGifs(gifLimit);
     } else {
-        $("#gif-view").empty();
         gifLimit = $("#gifLimit-input").val();
-        console.log(gifLimit);
-        var meme = $(this).attr("data-name")
-        var queryURL = `https://api.giphy.com/v1/gifs/search?q=${meme}&limit=${gifLimit}&api_key=1ow0eSpQvrKQ1nQarYqdvaURC99YYscY`;
-        // Creates AJAX call for the button being clicked
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-            for (let i = 0; i < response.data.length; i++) {
-                let repObject = response.data[i];
-                let fwsurl = repObject.images.fixed_width_still.url;
-                let fwurl = repObject.images.fixed_width.url;
-                let rating = repObject.rating;
-                let showgifs = $("<span>");
-                showgifs.addClass("gifsInfo");
-                console.log(showgifs);
-                let rated = $("<p>");
-                rated.text(rating);
-                console.log(fwsurl);
-                let imgBox = $(`<img src="${fwsurl}" alt="${rating}" />`);
-                console.log(imgBox);
-                let movImgBox = ($(`<img src="${fwurl}" alt="${rating}" />`));
-                imgBox.addClass("meme");
-                imgBox.append(rated);
-                showgifs.append(imgBox);
-                console.log(showgifs);
-                $("#gif-view").append(showgifs);
-            }
-        })
-    }
+        $("#gifLimit-input").val("");
+        displayGifs(gifLimit);
+    };
+    
 };
+
+
+function displayGifs(gifLimit) {
+
+
+    $("#gif-view").empty();
+    console.log(gifLimit);
+    var meme = $(this).attr("data-name")
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${meme}&limit=${gifLimit}&api_key=1ow0eSpQvrKQ1nQarYqdvaURC99YYscY`;
+    // Creates AJAX call for the button being clicked
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        for (let i = 0; i < response.data.length; i++) {
+            let repObject = response.data[i];
+            let fwsurl = repObject.images.fixed_width_still.url;
+            let fwurl = repObject.images.fixed_width.url;
+            let rating = repObject.rating;
+            let showgifs = $("<span>");
+            showgifs.addClass("gifsInfo");
+            let rated = $("<p>");
+            rated.addClass("rating");
+            rated.text(`rating: ${rating}`);
+            let imgBox = $(`<img src="${fwsurl}" alt="${rating}" />`);
+            imgBox.attr("data-src", fwurl);
+            imgBox.addClass("meme");
+            showgifs.append(imgBox);
+            showgifs.append(rated);
+            $("#gif-view").append(showgifs);
+        }
+    })
+}
+
 
 
 
@@ -92,7 +97,16 @@ $("#add-gifs").on("click", function (event) {
 // work for dynamically generated elements
 
 
-$(document).on("click", ".gifs", displayGifs);
+$(document).on("click", ".gifs", checkLimit);
+
+
+$(document).on("click", ".meme", function () {
+    let tempA = $(this).attr("src");
+    let tempB = $(this).attr("data-src");
+    console.log(tempA, tempB);
+    $(this).attr("src", tempB).attr("data-src", tempA);
+});
+
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
