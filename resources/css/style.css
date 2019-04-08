@@ -15,11 +15,14 @@ body {
 
 header {
     border-bottom: 1px solid black;
+    text-align: center;
+    
 }
 
 h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 3rem;
+    vertical-align: middle;
 }
 
 
